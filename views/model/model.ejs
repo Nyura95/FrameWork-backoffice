@@ -1,0 +1,114 @@
+<% if(!model) { %>
+  Variable model manquante !
+<% } else { %>
+  <% if(model.rows.length === 0) { %>
+    Aucune commande n'a été trouvée
+  <% } %>
+  <% if(model.header.length == 0 && model.corps.length == 0 && model.footer.length == 0) { %>
+    Aucun parametres !
+  <% } %>
+  <style>
+  .card-columns {
+    -webkit-column-count: <%=model.nbColumns%>;
+       -moz-column-count: <%=model.nbColumns%>;
+            column-count: <%=model.nbColumns%>;
+  }
+  @media (max-width: 576px) {
+    .card-columns {
+      -webkit-column-count: 1;
+         -moz-column-count: 1;
+              column-count: 1;
+    }
+  }
+  </style>
+  <div class="card-columns" style="">
+  <% for(let i = model.start; i<model.rows.length;i++) {%>
+    <% if(i<model.end) { %>
+      <% if(model.header.length != 0 || model.corps.length != 0 || model.footer.length != 0) { %>
+
+          <div class="col-12" style="margin-bottom:10px;">
+            <div class="card">
+              <% if(model.header.length != 0) {%>
+                <div class="card-header text-sm-up-center">
+                  <h4 class="card-title <% if(model.header[i].position) { %> text-<%= model.header[i].position %> <% } %>"><%- model.header[i].title %></h4>
+                  <div class="row">
+                    <% if(model.header[i].position) { %>
+                      <h6 class="card-subtitle text-muted col-xs-12 col-sm-12 col-md-12 col-lg-12 <% if(model.header[i].position) { %> text-<%= model.header[i].position %> <% } %>"><%- model.header[i].subtitle %></h6>
+                    <% } else { %>
+                      <h6 class="card-subtitle text-muted col-xs-12 col-sm-6 col-md-6 col-lg-6"><%- model.header[i].subtitle %></h6>
+                    <% } %>
+                    <% if(model.header[i].subtitleLeft) { %>
+                      <h6 class="card-subtitle text-muted col-xs-12 col-sm-6 col-md-6 col-lg-6 hidden-xs-down d-md-block text-sm-right text-mb-right text-lg-right "><%- model.header[i].subtitleLeft %></h6>
+                    <% } %>
+                    <% if(model.header[i].subtitleLeftRes) {%>
+                      <h6 class="text-muted hidden-sm-up col-12 text-center"><%- model.header[i].subtitleLeftRes %></h6>
+                    <% } %>
+                  </div>
+                </div>
+              <% } %>
+
+              <% if(model.corps.length != 0) { %>
+                <div class="card-block">
+                  <div class="row">
+                    <% for(let y = 0; y<model.corps[i].length;y++) { %>
+                      <div class="card-block col-auto text-<%=model.corps[i][y].position%>">
+                        <% if(model.corps[i][y].type == "list") { %>
+                          <% if(model.corps[i][y].title != "") { %> <h5 class="card-title"><%- model.corps[i][y].title %></h5> <% } %>
+                          <% if(Array.isArray(model.corps[i][y].rows)) { %>
+                            <% for(let r = 0; r<model.corps[i][y].rows.length;r++) { %>
+                              <p class="card-text"><%- model.corps[i][y].rows[r] %></p>
+                            <% } %>
+                          <% } else { %>
+                            <p class="card-text"><%- model.corps[i][y].rows %></p>
+                          <% } %>
+                          <% if(model.corps[i][y].subtitle != "") { %> <div class="text-muted"><%- model.corps[i][y].subtitle %> </div><% } %>
+                        <% } else { %>
+                          <% if(model.corps[i][y].title != "") { %> <h5 class="card-title"><%- model.corps[i][y].title %></h5> <% } %>
+                          <ul class="list-group list-group-flush">
+                            <% if(Array.isArray(model.corps[i][y].rows)) { %>
+                              <% for(let r = 0; r<model.corps[i][y].rows.length;r++) { %>
+                                <li class="list-group-item"><%- model.corps[i][y].rows[r] %></li>
+                              <% } %>
+                            <% } else { %>
+                              <li class="list-group-item"><%- model.corps[i][y].rows %></li>
+                            <% } %>
+                          </ul>
+                          <% if(model.corps[i][y].subtitle != "") { %> <div class="text-muted"><%- model.corps[i][y].subtitle %> </div><% } %>
+                        <% } %>
+                      </div>
+                    <% } %>
+                  </div>
+                </div>
+              <% } %>
+              <% if(model.footer.length != 0) {%>
+                <div class="card-footer form-check-label text-muted text-center">
+                  <% for(let y = 0; y<model.footer[i].length;y++) { %>
+                    <% if(typeof model.footer[i][y] == "object") { %>
+                      <% if(model.footer[i][y].title) { %>
+                        <div class="card-text text-<%= model.footer[i][y].position %> text-muted"><%= model.footer[i][y].title %></div>
+                      <% } else { %>
+                        <% if(model.footer[i][y].type == "arrow") {%>
+                          <a href="<%= model.footer[i][y].ref %>">
+                            <small class="text-muted"><%= model.footer[i][y].text %></small>
+                            <span class="float-right"><i class="fa fa-angle-right"></i></span>
+                          </a>
+                        <% } else { %>
+                          <% if(model.footer[i][y].condition != false) {%>
+                            <a href="<%= model.footer[i][y].ref %>" class="btn btn-<%= model.footer[i][y].color %> col-xs-12 col-sm-12 col-md-auto col-lg-auto"><%= model.footer[i][y].text %></a>
+                          <% } %>
+                        <% } %>
+                      <% }%>
+                    <% } %>
+                  <% } %>
+                </div>
+              <% } %>
+            </div>
+          </div>
+
+      <% } %>
+    <% } else { %>
+      <% i = model.rows.length + 1 %>
+    <% } %>
+  <% } %>
+  </div>
+<% } %>

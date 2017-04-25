@@ -1,0 +1,91 @@
+<div class="row">
+  <div class="col-xl-3 col-sm-6 mb-3">
+    <div class="card card-inverse card-primary o-hidden h-100 hover">
+      <div class="card-block">
+        <div class="card-block-icon">
+          <i class="fa fa-fw fa-comments"></i>
+        </div>
+        <div class="mr-5">
+          <% if(meta.newMsg <= 0) {%>
+            Pas de nouveaux message !
+          <% } else if(meta.newMsg == 1) {%>
+            Vous avez <%=meta.newMsg%> nouveau message !
+          <% } else {%>
+            Vous avez <%=meta.newMsg%> nouveaux messages !
+          <% } %>
+        </div>
+      </div>
+      <a href="#" class="card-footer clearfix small z-1">
+        <span class="float-left">Détail</span>
+        <span class="float-right"><i class="fa fa-angle-right"></i></span>
+      </a>
+    </div>
+  </div>
+  <div class="col-xl-3 col-sm-6 mb-3">
+    <div class="card card-inverse card-success o-hidden h-100 hover">
+      <div class="card-block">
+        <div class="card-block-icon">
+          <i class="fa fa-fw fa-list"></i>
+        </div>
+        <div class="mr-5">
+          <% if(newQuest <= 0) {%>
+            Pas de nouvelles quêtes !
+          <% } else if(newQuest == 1) {%>
+            Vous avez <%=newQuest%> nouvelle quête !
+          <% } else {%>
+            Vous avez <%=newQuest%> nouvelles quêtes !
+          <% } %>
+        </div>
+      </div>
+      <a href="#" class="card-footer clearfix small z-1">
+        <span class="float-left">Détail</span>
+        <span class="float-right"><i class="fa fa-angle-right"></i></span>
+      </a>
+    </div>
+  </div>
+  <div class="col-xl-3 col-sm-6 mb-3">
+    <div class="card card-inverse card-warning o-hidden h-100 hover">
+      <div class="card-block">
+        <div class="card-block-icon">
+          <i class="fa fa-fw fa-shopping-cart"></i>
+        </div>
+        <div class="mr-5">
+          <% if(newAchat <= 0) {%>
+            Pas de nouveau achat !
+          <% } else if(newAchat == 1) {%>
+            Vous avez <%=newAchat%> nouveau achat !
+          <% } else {%>
+            Vous avez <%=newAchat%> nouveaux achats !
+          <% } %>
+        </div>
+      </div>
+      <a href="#" class="card-footer clearfix small z-1">
+        <span class="float-left">Détail</span>
+        <span class="float-right"><i class="fa fa-angle-right"></i></span>
+      </a>
+    </div>
+  </div>
+  <div class="col-xl-3 col-sm-6 mb-3">
+    <div class="card card-inverse card-danger o-hidden h-100 hover">
+      <div class="card-block">
+        <div class="card-block-icon">
+          <i class="fa fa-fw fa-support"></i>
+        </div>
+        <div class="mr-5">
+          <% if(newRecla <= 0) {%>
+            Pas de nouvelle réclamations
+          <% } else if(newRecla == 1) {%>
+            Vous avez <%=newRecla%> nouvelle réclamation !
+          <% } else {%>
+            Vous avez <%=newRecla%> nouvelles réclamations !
+          <% } %>
+        </div>
+      </div>
+      <a href="#" class="card-footer clearfix small z-1">
+        <span class="float-left">Détail</span>
+        <span class="float-right"><i class="fa fa-angle-right"></i></span>
+      </a>
+    </div>
+  </div>
+</div>
+<div class="col-12 text-center marginTop">Hello World</div>

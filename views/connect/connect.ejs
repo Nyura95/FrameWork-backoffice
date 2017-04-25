@@ -1,0 +1,16 @@
+<form class="form-control align-items-center marginTop col-xs-3 col-sm-8 col-md-5 col-lg-5 center" action="/" method="post">
+  <div class="form-group center <%if(fail.alert) {%> has-<%= fail.alert%> <% } %>">
+    <label for="inputUser">Utilisateur:</label>
+    <input type="text" class="form-control <%if(fail.alert) {%> form-control-<%= fail.alert %> <% } %>" id="inputUser" name="inputUser"/>
+  </div>
+  <div class="form-group center <%if(fail.alert == 'danger') {%> has-<%= fail.alert%> <% } %>">
+    <label for="inputUser">Mot de passe:</label>
+    <input type="password" class="form-control <%if(fail.alert == 'danger') {%> has-<%= fail.alert%> <% } %>" id="inputPsw" name="inputPsw"/>
+    <div class="form-control-feedback">
+      <% if(fail) {%> <%= fail.message %> <% } %>
+    </div>
+  </div>
+  <div class="form-group center">
+    <input type="submit" class="form-control" id="submit"/>
+  </div>
+</form>

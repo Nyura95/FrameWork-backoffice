@@ -1,0 +1,63 @@
+<% if(form) {%>
+  <div class="col-xs-12 col-sm-12 col-md-7 col-lg-6 mx-auto" style="margin-top:50px;margin-bottom:50px;">
+    <div class="card mx-auto">
+      <div class="card-header card-primary">
+        <h3 class="card-title text-center" style="color:white;"><%= form.title %></h3>
+      </div>
+      <form action="<%= form.action %>" method="<%= form.method %>"  id="contact_form">
+        <div class="card-block mx-auto col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <input type="hidden" value="<%= form.nb %>" >
+          <% for (let i = 0; i < form.content.length; i++) { %>
+            <% if(form.content[i].type === "text" || form.content[i].type === "email" || form.content[i].type === "number") { %>
+              <div class="form-group text-center">
+                <label for="<%= form.content[i].name %>"><b><%= form.content[i].label %></b></label>
+                <div class="input-group">
+                  <div class="input-group-addon"><i class="fa fa-<%= form.content[i].icon %>"></i></div>
+                  <input type="<%= form.content[i].type %>" class="form-control input-sm" name="<%= form.content[i].name %>" placeholder="<%= form.content[i].placeholder %>", value="<%= form.content[i].value %>">
+                  <% if(form.content[i].operator) { %>
+                    <div class="input-group-addon">
+                      <select name="operator-<%= form.content[i].name %>">
+                        <option value="=">=
+                        <option value="!=">!=
+                        <option value="<"><
+                        <option value="<="><=
+                        <option value=">">>
+                        <option value=">=">>=
+                      </select>
+                    </div>
+                  <% } %>
+                </div>
+              </div>
+            <% } else if(form.content[i].type === "select") { %>
+              <div class="form-group text-center">
+                <label for="<%= form.content[i].name %>"><b><%= form.content[i].label %></b></label>
+                <div class="input-group">
+                  <div class="input-group-addon"><i class="fa fa-<%= form.content[i].icon %>"></i></div>
+                  <select name="<%= form.content[i].name %>" class="form-control selectpicker" >
+                    <option value="" selected><%= form.content[i].placeholder %></option>
+                    <% for (let y = 0; y < form.content[i].choose.length; y++) { %>
+                      <option value="<%= form.content[i].choose[y].value %>"><%= form.content[i].choose[y].affichage %></option>
+                    <% } %>
+                  </select>
+                </div>
+              </div>
+            <% } else if(form.content[i].type === "textarea") { %>
+              <div class="form-group text-center">
+                <label for="<%= form.content[i].name %>"><b><%= form.content[i].label %></b></label>
+                <div class="input-group">
+                  <div class="input-group-addon"><i class="fa fa-<%= form.content[i].icon %>"></i></div>
+                  <textarea class="form-control input-sm" id="<%= form.content[i].name %>" name="<%= form.content[i].name %>" rows="3" placeholder="<%= form.content[i].placeholder %>" value="<%= form.content[i].value %>"></textarea>
+                </div>
+              </div>
+            <% } %>
+          <% } %>
+        </div>
+        <div class="card-footer form-check-label text-muted text-center">
+          <input type="submit" class="btn btn-primary" value="Valider">
+        </div>
+      </form>
+    </div>
+  </div>
+<% } else { %>
+  Erreur formulaire !
+<% } %>

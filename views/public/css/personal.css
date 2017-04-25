@@ -1,0 +1,54 @@
+.perso {
+  margin-right: 30px;
+}
+.navbar {
+  background-color: #000 !important;
+}
+
+#mainNav .navbar-collapse .navbar-nav.sidebar-nav{
+  background-color: #000 !important;
+}
+
+.nav-item {
+  cursor: pointer;
+}
+
+.center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.marginTop {
+  margin-top: 18%;
+}
+
+
+@media (max-width: 576px) {
+  .marginTop {
+    margin-top: 10%;
+  }
+}
+
+
+.top-buffer {
+  margin-top: 10px;
+}
+
+
+.hover {
+  cursor: pointer;
+  transition:0.5s;
+}
+
+.hover:hover {
+  box-shadow: 10px 10px 5px #888888;
+}
+
+.code{
+  padding: 0.2rem 0.4rem;
+  font-size: 100%;
+  border-radius: 0.25rem;
+  margin-left: auto;
+  margin-right: auto;
+  font-weight: bold;
+}

@@ -1,0 +1,68 @@
+<% if(!information) { %>
+  Information manquante !
+<% } else { %>
+  <% if(information.length > 0) { %>
+    <style>
+      .card {
+        display:block;
+      }
+    </style>
+    <% var traitementObject = function(name, obj, line, col) {
+      let keys = Object.keys(obj);
+      let string = ""
+      if(line) {
+        string += '<div class="row col-'+col+' card card-outline-secondary mb-3 text-center mx-auto" style="border: 0px;">';
+      } else {
+        string += '<div class="row col-'+col+' card code text-center">'
+      }
+      string += name;
+      string += '<div class="row col-12 mx-auto" style="padding-right: 0px;padding-left: 0px;">';
+      let stringSup = ""
+      for(let i = 0; i<keys.length;i++) {
+        if(typeof obj[keys[i]] == "object") {
+          if(Array.isArray(obj[keys[i]])) {
+            stringSup += '<div class="card card-outline-secondary code">';
+            for(let y = 0; y<obj[keys[i]].length;y++) {
+              stringSup += traitementObject(keys[i]+(y+1), obj[keys[i]][y], false, col - 1)
+            }
+            stringSup += '</div>';
+          } else {
+            stringSup += traitementObject(keys[i], obj[keys[i]], false, col)
+          }
+          continue
+        }
+        string += '<div class="card-block col-auto">';
+        string += '<div class="form-group text-center">';
+        string += '<fieldset disabled>';
+        string += '<div class="input-group">';
+        string += '<span class="input-group-btn">';
+        string += '<button class="btn btn-secondary hidden-sm-down" type="button"><b>'+keys[i]+'</b></button>';
+        string += '</span>';
+        string += '<input type="text" class="form-control col-12" value="'+ obj[keys[i]] +'">';
+        string += '</div>';
+        string += '</fieldset>';
+        string += '</div>';
+        string += '</div>';
+      };
+      string += '</div>';
+      string += stringSup
+      string += '</div>';
+      return string
+    } %>
+
+    <% for(let i = 0; i<information.length;i++) {%>
+      <div class="col-12" style="margin-bottom:10px;">
+        <div class="card">
+          <div class="card-header card-primary" >
+            <h3 class="card-title text-center" style="color:white;">Information détaillé</h3>
+          </div>
+          <div class="card-block" style="padding-right: 0px;padding-left: 0px;">
+            <%- traitementObject("", information[i], true, 12) %>
+          </div>
+        </div>
+      </div>
+    <% } %>
+  <% } else { %>
+    Aucune information !
+  <% } %>
+<% } %>
