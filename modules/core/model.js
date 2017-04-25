@@ -79,7 +79,7 @@ class model extends ejs{
   }
 
   //Rows : Requete, start : Debut, end : fin
-  setRequete(rows, start = 0, end = 50) {
+  setRequest(rows, start = 0, end = 50) {
     super.setRequete(rows)
     this.rows = rows
     //Rows limite

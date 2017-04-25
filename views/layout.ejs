@@ -40,14 +40,14 @@
             <% if(meta.token) {%>
               <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle mr-lg-2" href="#">
-                      <i class="fa fa-fw fa-commenting"></i> <span class="hidden-lg-up">Messages <span class="badge badge-pill badge-primary"><%= meta.newMsg %> New</span></span>
-                      <span class="new-indicator text-primary hidden-md-down"><i class="fa fa-fw fa-circle"></i><span class="number"><%= meta.newMsg %></span></span>
+                      <i class="fa fa-fw fa-commenting"></i> <span class="hidden-lg-up">Messages <span class="badge badge-pill badge-primary"><%= meta.newMsg || 0 %> New</span></span>
+                      <span class="new-indicator text-primary hidden-md-down"><i class="fa fa-fw fa-circle"></i><span class="number"><%= meta.newMsg || 0 %></span></span>
                   </a>
               </li>
               <li class="nav-item dropdown perso">
                   <a class="nav-link dropdown-toggle mr-lg-2" href="#" id="alertsDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <i class="fa fa-fw fa-bell"></i> <span class="hidden-lg-up">Alertes <span class="badge badge-pill badge-warning"><%= meta.newAlert %> nouvelles</span></span>
-                      <span class="new-indicator text-warning hidden-md-down"><i class="fa fa-fw fa-circle"></i><span class="number"><%= meta.newAlert %></span></span>
+                      <i class="fa fa-fw fa-bell"></i> <span class="hidden-lg-up">Alertes <span class="badge badge-pill badge-warning"><%= meta.newAlert || 0 %> nouvelles</span></span>
+                      <span class="new-indicator text-warning hidden-md-down"><i class="fa fa-fw fa-circle"></i><span class="number"><%= meta.newAlert || 0 %></span></span>
                   </a>
                   <div class="dropdown-menu" aria-labelledby="alertsDropdown">
                     <a class="dropdown-item" href="#">Voir</a>

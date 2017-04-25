@@ -25,7 +25,7 @@ module.exports = function(app) {
   ]
 
   app.get('/commande', async (req, res) => {
-    yourModel.setRequete(rows, 0, 50)
+    yourModel.setRequest(rows, 0, 50)
 
     var locals = {
       meta: {
@@ -50,8 +50,10 @@ module.exports = function(app) {
     newForm.setInput("Rechercher par nom", "infoClient.name", "text", "facebook", true)
     newForm.setInput("Rechercher par ville", "infoClient.ville", "text", "address-book-o", true)
     newForm.setInput("Rechercher par code postal", "infoClient.postal", "text", "address-card", true)
-    await newForm.setSelect("Rechercher par ID produit", "panier.produit.id_produit", "puzzle-piece", "ID produit", "SELECT id_produit, name FROM `produit`")
-
+    //If u have init the mysql
+    //await newForm.setSelect("Rechercher par ID produit", "panier.produit.id_produit", "puzzle-piece", "ID produit", "SELECT id_produit, name FROM `produit`")
+    //else
+    newForm.setSelect("Rechercher par ID produit", "panier.produit.id_produit", "puzzle-piece", "ID produit", ["1111 - produit 1", "1112 - produit 2", "1113 - produit 3"])
     var locals = {
       meta: {
         title: 'Recherche d\'une commande',
@@ -79,7 +81,7 @@ module.exports = function(app) {
   app.post('/commande', async (req, res) => {
 
     let newForm = new form()
-    newForm.setRequete(rows)
+    newForm.setRequest(rows)
     let commande = newForm.seek(req.body)
     yourModel.setRequete(commande, 0, 1)
 

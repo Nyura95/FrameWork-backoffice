@@ -40,6 +40,13 @@ class form extends search{
           choose.push({value:fileFolder[i].replace(new RegExp(" ", 'g'), ""), affichage:fileFolder[i].replace(new RegExp(" ", 'g'), "")})
         }
       }
+    } else {
+      let tmp = choose
+      choose = new Array()
+      for (let i = 0; i < tmp.length; i++) {
+        tmp[i]
+        choose.push({value:tmp[i], affichage:tmp[i]})
+      }
     }
     this.form.content.push({label:label, type:"select", icon:icon, placeholder:placeholder, name:name, choose:choose})
     this.nbName++
